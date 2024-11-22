@@ -13,6 +13,3 @@ clearBtn.addEventListener('click', function () {
   localStorage.clear();
   location.reload();
 });
-
-
-
