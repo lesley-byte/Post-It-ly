@@ -1,5 +1,7 @@
 let noteId=1;
 
+const clear_all_btn = document.getElementById('clear-all-btn');
+
 //start
 let newX = 0, newY = 0;
 let startX = 0;
@@ -7,6 +9,11 @@ let startY = 0;
 
 //set the current note to null
 let currentNote = null;
+
+clear_all_btn.addEventListener('click' , function (){
+     window.location.reload();
+})
+
 function createNote(){
     const notePad = document.getElementById('notes-board');
     //create a note 
@@ -84,10 +91,8 @@ function mouseDown(event){
 
     // For Debugging
     //console.log('Mouse is down', startX, startY,clickedElement, currentNote)
-    if(currentNote.classList.contains('moveable')){
-        document.addEventListener('mousemove', mouseMove)
-        document.addEventListener('mouseup',mouseUp);
-    }
+    document.addEventListener('mousemove', mouseMove)
+    document.addEventListener('mouseup',mouseUp);
 }
 
 function mouseMove(event) {
@@ -106,6 +111,7 @@ function mouseMove(event) {
 }
 
 function mouseUp(event){
+    currentNote = null;
     document.removeEventListener('mousemove',mouseMove);
 }
 
