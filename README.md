@@ -12,7 +12,7 @@
 ## 📱App Usage
 Sticky-Notes Board can be used by anyone with important information & a busy brain.
 
-(insert screenshots of each step after each description)
+# (insert screenshots & update description of each step)
 
 1. **Open the app:** Launch the Sticky-Note Board application on your device.
 2. **Create a new note or list:**
@@ -39,9 +39,9 @@ Click the link to try Sticky-Notes Board: https://ldegraz.github.io/Project-1/
 
 ## 🤝Contributors
 - **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed the local storage code in JavaScript, created the README using markdown, & ogranized the presentation so collaborators could easily add work.
-- **Tyreone Sarpong:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
-- **Grace Halpin:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
-- **Thomas Korlewala:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
+- **Tyreone Sarpong:** [GitHub Profile](https://github.com/Tyreone58) - Developed the Javascript code for a responsive & functional website, & added contributions to the README & group presentation.
+- **Grace Halpin:** [GitHub Profile](https://github.com/PentelX) - Developed the CSS code to style the website, utilized Bootstrap for a responsive design, & added contributions to the README & group presentation.
+- **Thomas Korlewala:** [GitHub Profile](https://github.com/Tobby45bay) - Developed the Javascript code for a responsive & functional website, & added contributions to the README & group presentation.
 
 ## 😎👍Thank You
 This project was created with the intention of helping individuals organize their thoughts & declutter their minds. We hope you find Sticky-Notes Board to be a useful tool in your daily life. If you have any feedback or suggestions, please feel free to reach out to us. We appreciate your support and hope you enjoy using Sticky-Notes Board! 📝
