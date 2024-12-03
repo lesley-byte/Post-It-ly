@@ -1,18 +1,18 @@
 body {
     font-family: sans-serif;
-    background-color: #000000;
+    background-color: #ffffff;
 }
 
 .btn-group button{
     cursor: pointer;
-  
 }
 
 #clear-all-btn{
     background-color: crimson;
     width: 100px;
-   
-
+    height: 50px;
+   display: block;
+   margin: left; 
 }
 
 #clear-all-btn:hover {
@@ -22,8 +22,8 @@ body {
 #add-note-btn{
     background-color: lightblue;
     width: 100px;
-   
-
+    display: block;
+    margin: left; 
 }
 
 #add-note-btn:hover {
@@ -33,11 +33,17 @@ body {
 #add-list-btn{
     background-color: khaki;
     width: 100px;
-   
-
+    display: block;
+    margin: left; 
 }
 
 #add-list-btn:hover {
     background-color: burlywood;
 }
 
+#note {
+    border: 1px solid grey;
+    background-color:lemonchiffon;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
