@@ -44,5 +44,4 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 - **Thomas Korlewala:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 
 ## 😎👍Thank You
-
 This project was created with the intention of helping individuals organize their thoughts & declutter their minds. We hope you find Sticky-Notes Board to be a useful tool in your daily life. If you have any feedback or suggestions, please feel free to reach out to us. We appreciate your support and hope you enjoy using Sticky-Notes Board! 📝
