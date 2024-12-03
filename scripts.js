@@ -131,5 +131,4 @@ function saveNotes(){
         });
     });
     localStorage.setItem('notes',JSON.stringify(savedNotes));
-
 }
