@@ -25,7 +25,7 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 5. **View the notes:** The notes will be saved to your local storage. You can exit your board and return to it at a later time.
 
 ## 💻Give it a Try
-(insert link here)
+Click the link to try Sticky-Notes Board: https://ldegraz.github.io/Project-1/
 
 ## 🏗️App Structure
 - **index.html:** This is the main entry point for the Sticky-Notes Board app & it contains the basic structure of the webpage. It links to the style.css for styling and script.js for functionality.
