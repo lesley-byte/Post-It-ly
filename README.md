@@ -38,7 +38,7 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 - **JavaScript:** Implemented for the interactive functionalities of the app, including note creation and local storage management.
 
 ## 🤝Contributors
-- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
+- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed the local storage code in JavaScript, created the README using markdown, & ogranized the presentation so collabritors could easily add work.
 - **Tyreone Sarpong:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 - **Grace Halpin:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 - **Thomas Korlewala:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
