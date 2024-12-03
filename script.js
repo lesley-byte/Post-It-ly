@@ -1,6 +1,59 @@
+//code from local storage
+const noteBoard = document.querySelector('#note-board');
+const addTextBtn = document.querySelector('#add-note-btn');
+const addListBtn = document.querySelector('#add-list-btn');
+const clearBtn = document.querySelector('#clear-all-btn');
+
+//code from local storage
+//temporary storage to track the notes added to the board
+let tempStorageNote = {
+    text: [],
+    list: [],
+};
+
 let noteId=1;
 
+
+//is this dupilcate code?
 const clear_all_btn = document.getElementById('clear-all-btn');
+//code below from local storage
+clearBtn.addEventListener('click', function () {
+    localStorage.clear();
+    location.reload();
+});
+
+//from local storage
+//Updates local storage with tempStorageNote
+function updateLocalStorage() {
+    localStorage.setItem('noteBoardData', JSON.stringify(tempStorageNote));
+}
+  
+//from local storage
+//reload page from local storage
+function loadFromLocalStorage () {
+    const storedNotes = JSON.parse(localStorage.getItem('noteBoardData'));
+    if (storedNotes) {
+      tempStorageNote = storedNotes;
+      for (let i = 0; i < tempStorageNote.text.length; i++) {
+        const text = tempStorageNote.text[i];
+        const textDiv = document.createElement("div");
+        textDiv.classList.add("text-item", "draggable");
+        textDiv.textContent = text.text;
+        textDiv.style.left = text.left;
+        textDiv.style.top = text.top;
+        noteBoard.appendChild(textDiv);
+      }
+      for (let i = 0; i < tempStorageNote.list.length; i++) {
+        const ul = tempStorageNote.list[i];
+        const ulDiv = document.createElement("ul");
+        ulDiv.classList.add("list-item", "draggable");
+        ulDiv.textContent = ul.text;
+        ulDiv.style.left = ul.left;
+        ulDiv.style.top = ul.top;
+        noteBoard.appendChild(ulDiv);
+      }
+    }
+}
 
 //start
 let newX = 0, newY = 0;
@@ -74,6 +127,7 @@ function createNote(){
 
     //every time a new note is added increase id by 1
     noteId += 1;
+    saveNotes();
 }
 
 function mouseDown(event){
@@ -109,7 +163,7 @@ function mouseMove(event) {
 
 
 }
-
+function mouseUp(){
 function mouseUp(event){
     currentNote = null;
     document.removeEventListener('mousemove',mouseMove);
@@ -131,4 +185,25 @@ function saveNotes(){
         });
     });
     localStorage.setItem('notes',JSON.stringify(savedNotes));
+
 }
+
+document.querySelectorAll('.note').forEach(note => {
+    const left = note.style.left;
+    const top = note.style.top;
+    const text = note.querySelector('.note-content').innerHTML;
+    tempStorageNote.text.push({
+        text: text,
+        left: left,
+        top: top,
+    });
+});
+    }
+
+//code from local storage
+//updates the local storage with the new tempStorageNote information 
+updateLocalStorage();
+
+//code from local storage
+//loads data from local storage when page is loaded 
+window.onload = loadFromLocalStorage;
