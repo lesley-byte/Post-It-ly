@@ -1,15 +1,15 @@
-# :spiral_note_pad: Sticky-Notes Board
+# 🗒️ Sticky-Notes Board
 **Thanks for choosing Sticky-Notes Board!** This is the perfect place to declutter your mind & organize your thoughts. You can store quick notes or jot down important lists with the click of a button. Sticky-Notes Board will bring peace of mind when you know all your important information is being stored in one place, instead of scattered around your desk on loose pieces of paper.
 
 ## 🗄️ Table of Contents
-- [App Usage](#app-usage)
-- [Sticky-Notes Board Link & Screenshot](#give-it-a-try)
+- [App Usage](#📱app-usage)
+- [Sticky-Notes Board Link & Screenshot](#💻give-it-a-try)
 - [App Structure](#🏗️app-structure)
 - [Technologies Used](#📋technologies-used)
 - [Contributors](#🤝contributors)
 - [Thank You](#😎👍thank-you)
 
-## App Usage
+## 📱App Usage
 Sticky-Notes Board can be used by anyone with important information & a busy brain.
 
 (insert screenshots of each step after each description)
@@ -24,7 +24,7 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 4. **Clear your board:** When you are done with the notes & lists on your board, click the "clear all" button on the bottom left of the page.
 5. **View the notes:** The notes will be saved to your local storage. You can exit your board and return to it at a later time.
 
-## Give it a Try
+## 💻Give it a Try
 (insert link here)
 
 ## 🏗️App Structure
@@ -38,7 +38,7 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 - **JavaScript:** Implemented for the interactive functionalities of the app, including note creation and local storage management.
 
 ## 🤝Contributors
-- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
+- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed the local storage code in JavaScript, created the README using markdown, & ogranized the presentation so collabritors could easily add work.
 - **Tyreone Sarpong:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 - **Grace Halpin:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 - **Thomas Korlewala:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
