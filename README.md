@@ -25,7 +25,7 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 5. **View the notes:** The notes will be saved to your local storage. You can exit your board and return to it at a later time.
 
 ## 💻Give it a Try
-(insert link here)
+Click the link to try Sticky-Notes Board: https://ldegraz.github.io/Project-1/
 
 ## 🏗️App Structure
 - **index.html:** This is the main entry point for the Sticky-Notes Board app & it contains the basic structure of the webpage. It links to the style.css for styling and script.js for functionality.
@@ -38,7 +38,7 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 - **JavaScript:** Implemented for the interactive functionalities of the app, including note creation and local storage management.
 
 ## 🤝Contributors
-- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed the local storage code in JavaScript, created the README using markdown, & ogranized the presentation so collabritors could easily add work.
+- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed the local storage code in JavaScript, created the README using markdown, & ogranized the presentation so collaborators could easily add work.
 - **Tyreone Sarpong:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 - **Grace Halpin:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
 - **Thomas Korlewala:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
