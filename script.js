@@ -127,6 +127,7 @@ function createNote(){
 
     //every time a new note is added increase id by 1
     noteId += 1;
+    saveNotes();
 }
 
 function mouseDown(event){
@@ -162,7 +163,7 @@ function mouseMove(event) {
 
 
 }
-
+function mouseUp(){
 function mouseUp(event){
     currentNote = null;
     document.removeEventListener('mousemove',mouseMove);
@@ -187,19 +188,16 @@ function saveNotes(){
 
 }
 
-//code from local storage
-if (currentElement.tagName === 'DIV') {
+document.querySelectorAll('.note').forEach(note => {
+    const left = note.style.left;
+    const top = note.style.top;
+    const text = note.querySelector('.note-content').innerHTML;
     tempStorageNote.text.push({
-      text: currentElement.textContent,
-      left: left,
-      top: top,
-    });
-    } else {
-      tempStorageNote.list.push({
-        text: currentElement.textContent,
+        text: text,
         left: left,
         top: top,
-        });
+    });
+});
     }
 
 //code from local storage
