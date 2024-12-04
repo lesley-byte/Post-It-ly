@@ -12,17 +12,21 @@
 ## 📱App Usage
 Sticky-Notes Board can be used by anyone with important information & a busy brain.
 
-# (insert screenshots & update description of each step)
-
-1. **Open the app:** Launch the Sticky-Note Board application on your device.
-2. **Create a new note or list:**
-    - Click the "new note" or "new list" button
-    - A blank note/list will appear on your noteboard
+1. **Open the app:** Launch the Sticky-Note Board application on your device or computer.
+![image of step 1](./assets/images/step%201.png)
+2. **Create a new note:**
+    - Click the "new note" button
+    - A blank note will appear on your noteboard
+![image of step 2](./assets/images/step%202.png)
 3. **Edit your note/list:**
     - Click on the text area of the sticky note to start typing
     - Move the sticky note around by right-clicking the note and dragging it to the desired location.
+    - If you are done with single note, but do not want to delete the whole board, simply click the "x" on the top, left corner of the note.
+![image of step 3](./assets/images/step%203.png)
 4. **Clear your board:** When you are done with the notes & lists on your board, click the "clear all" button on the bottom left of the page.
+![image of step 4](./assets/images/step%204.png)
 5. **View the notes:** The notes will be saved to your local storage. You can exit your board and return to it at a later time.
+![image of step 5](./assets/images/step%205.png)
 
 ## 💻Give it a Try
 Click the link to try Sticky-Notes Board: https://ldegraz.github.io/Project-1/
@@ -30,7 +34,7 @@ Click the link to try Sticky-Notes Board: https://ldegraz.github.io/Project-1/
 ## 🏗️App Structure
 - **index.html:** This is the main entry point for the Sticky-Notes Board app & it contains the basic structure of the webpage. It links to the style.css for styling and script.js for functionality.
 - **style.css:** This file contains the CSS code that defines the overall look & feel of the app. It also contains additional styles to ensure responsiveness across devices. The styles are applied to the elements defined in index.html to enhance the user experience.
-- **script.js:** This file contains the JavaScript code that handles the app's functionality. It contains the core logic, utility functions (e.g., creating, editing, & deleting the notes/lists), and local storage that can be reused throughout the app. The script.js file interacts with the elements in index.html by manipulating the DOM, based on the user's actions (i.e., clicking buttons or typing notes).
+- **script.js:** This file contains the JavaScript code that handles the app's functionality. It contains the core logic, utility functions (e.g., creating, editing, & deleting the notes), and local storage that can be reused throughout the app. The script.js file interacts with the elements in index.html by manipulating the DOM, based on the user's actions (i.e., clicking buttons or typing notes).
 
 ## 📋Technologies Used
 - **Bootstrap:** Utilized to create a responsive and modern user interface, allowing the Sticky-Notes Board to function seamlessly across various devices.
