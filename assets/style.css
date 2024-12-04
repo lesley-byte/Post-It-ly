@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background-color: #000000;
+    background-color: #ffffff;
 }
 .btn-group button{
     cursor: pointer;
@@ -30,9 +30,7 @@ body {
 #add-list-btn:hover {
     background-color: burlywood;
 }
-=======
-    background-color: #ffffff;
-}
+
 
 .btn-group button{
     cursor: pointer;
@@ -72,9 +70,8 @@ body {
     background-color: burlywood;
 }
 
-#note {
+.note {
     border: 1px solid grey;
     background-color:lemonchiffon;
     display: inline-block;
-    transition: transform 0.3s ease-in-out;
 }
