@@ -1,59 +1,11 @@
-//code from local storage
 const noteBoard = document.querySelector('#note-board');
 const addTextBtn = document.querySelector('#add-note-btn');
-const addListBtn = document.querySelector('#add-list-btn');
 const clearBtn = document.querySelector('#clear-all-btn');
-
-//code from local storage
-//temporary storage to track the notes added to the board
-let tempStorageNote = {
-    text: [],
-    list: [],
-};
+//removed list button
 
 let noteId=1;
 
-
-//is this dupilcate code?
 const clear_all_btn = document.getElementById('clear-all-btn');
-//code below from local storage
-clearBtn.addEventListener('click', function () {
-    localStorage.clear();
-    location.reload();
-});
-
-//from local storage
-//Updates local storage with tempStorageNote
-function updateLocalStorage() {
-    localStorage.setItem('noteBoardData', JSON.stringify(tempStorageNote));
-}
-  
-//from local storage
-//reload page from local storage
-function loadFromLocalStorage () {
-    const storedNotes = JSON.parse(localStorage.getItem('noteBoardData'));
-    if (storedNotes) {
-      tempStorageNote = storedNotes;
-      for (let i = 0; i < tempStorageNote.text.length; i++) {
-        const text = tempStorageNote.text[i];
-        const textDiv = document.createElement("div");
-        textDiv.classList.add("text-item", "draggable");
-        textDiv.textContent = text.text;
-        textDiv.style.left = text.left;
-        textDiv.style.top = text.top;
-        noteBoard.appendChild(textDiv);
-      }
-      for (let i = 0; i < tempStorageNote.list.length; i++) {
-        const ul = tempStorageNote.list[i];
-        const ulDiv = document.createElement("ul");
-        ulDiv.classList.add("list-item", "draggable");
-        ulDiv.textContent = ul.text;
-        ulDiv.style.left = ul.left;
-        ulDiv.style.top = ul.top;
-        noteBoard.appendChild(ulDiv);
-      }
-    }
-}
 
 //start
 let newX = 0, newY = 0;
@@ -64,8 +16,10 @@ let startY = 0;
 let currentNote = null;
 
 clear_all_btn.addEventListener('click' , function (){
-     window.location.reload();
+    localStorage.removeItem('notes');
+    window.location.reload();
 })
+//added code to remove notes from local storage so page is cleared when reloaded
 
 function createNote(){
     const notePad = document.getElementById('notes-board');
@@ -118,6 +72,7 @@ function createNote(){
     note.appendChild(noteContent);
     //add note to notePad
     notePad.appendChild(note);
+    noteBoard.appendChild(note);
 
     //[WIP] to set the color of the note
     applyColor(note);
@@ -129,6 +84,61 @@ function createNote(){
     noteId += 1;
     saveNotes();
 }
+
+//saves the notes to local storage
+function saveNotes(){
+    const notes=noteBoard.querySelectorAll('.note');
+    const savedNotes=[];
+
+    notes.forEach((note)=>{
+        savedNotes.push({
+            id:note.id,
+            content:note.querySelector('.note-content').innerHTML,
+            color: note.style.backgroundColor
+        });
+    });
+    localStorage.setItem('notes',JSON.stringify(savedNotes));
+}
+
+//load notes from local storage
+function loadNotes(){
+    const savedNotes=JSON.parse(localStorage.getItem('notes'))||[];
+
+    savedNotes.forEach((note) => {
+        const existingNote=document.getElementById(note.id);
+
+        if (existingNote) {
+            existingNote.querySelector('.note-content').innerHTML=note.content;
+            existingNote.style.backgroundColor=note.color;
+        } else{
+            const notePad=document.getElementById('notes-board');
+            const newNote=document.createElement('div');
+            newNote.className='note';
+            newNote.id=note.id;
+            newNote.style.backgroundColor=note.color;
+
+            const clearButton=document.createElement('span');
+            clearButton.className='clear-button';
+            clearButton.innerHTML='&times;';
+            clearButton.onclick=function() {
+                notePad.removeChild(newNote);
+                saveNotes();
+            };
+
+            const noteContent=document.createElement('div');
+            noteContent.contentEditable=true;
+            noteContent.className='note-content';
+            noteContent.innerHTML=note.content;
+
+            newNote.appendChild(clearButton);
+            newNote.appendChild(noteContent);
+            notePad.appendChild(newNote);
+        }
+    });
+}
+
+//calls loadNotes to load notes from local storage
+document.addEventListener('DOMContentLoaded', loadNotes);
 
 function mouseDown(event){
     //set the staring x and y to the cursor x and y
@@ -156,15 +166,16 @@ function mouseMove(event) {
     startX = event.clientX;
     startY = event.clientY;
 
-    currentNote.style.top = (currentNote.offsetTop - newY) + 'px';
-    currentNote.style.left = (currentNote.offsetLeft - newX) + 'px';
+    if(currentNote != null){
+        currentNote.style.top = (currentNote.offsetTop - newY) + 'px';
+        currentNote.style.left = (currentNote.offsetLeft - newX) + 'px';
 
     console.log('Mouse is down', currentNote.style.top, currentNote.style.left)
-
+    }
 
 }
+
 function mouseUp(){
-function mouseUp(event){
     currentNote = null;
     document.removeEventListener('mousemove',mouseMove);
 }
@@ -173,37 +184,3 @@ function applyColor(note){
     const color = '#FFCC00';
     note.style.backgroundColor = color;
 }
-
-function saveNotes(){
-    const notes=document.querySelectorAll('.note');
-    const savedNotes=[];
-
-    notes.forEach((note)=>{
-        savedNotes.push({
-            id:note.id,
-            content:note.querySelector('.note-content').innerHTML,
-        });
-    });
-    localStorage.setItem('notes',JSON.stringify(savedNotes));
-
-}
-
-document.querySelectorAll('.note').forEach(note => {
-    const left = note.style.left;
-    const top = note.style.top;
-    const text = note.querySelector('.note-content').innerHTML;
-    tempStorageNote.text.push({
-        text: text,
-        left: left,
-        top: top,
-    });
-});
-    }
-
-//code from local storage
-//updates the local storage with the new tempStorageNote information 
-updateLocalStorage();
-
-//code from local storage
-//loads data from local storage when page is loaded 
-window.onload = loadFromLocalStorage;
