@@ -1,4 +1,4 @@
-const noteBoard = document.querySelector('#note-board');
+const noteBoard = document.querySelector('#notes-board');
 const addTextBtn = document.querySelector('#add-note-btn');
 const clearBtn = document.querySelector('#clear-all-btn');
 //removed list button
