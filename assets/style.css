@@ -1,5 +1,36 @@
 body {
     font-family: sans-serif;
+    background-color: #000000;
+}
+.btn-group button{
+    cursor: pointer;
+  
+}
+#clear-all-btn{
+    background-color: crimson;
+    width: 100px;
+   
+}
+#clear-all-btn:hover {
+    background-color: darkred;
+}
+#add-note-btn{
+    background-color: lightblue;
+    width: 100px;
+   
+}
+#add-note-btn:hover {
+    background-color: blue;
+}
+#add-list-btn{
+    background-color: khaki;
+    width: 100px;
+   
+}
+#add-list-btn:hover {
+    background-color: burlywood;
+}
+=======
     background-color: #ffffff;
 }
 

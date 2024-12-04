@@ -1,18 +1,18 @@
-# :spiral_note_pad: Sticky-Notes Board
+# 🗒️ Sticky-Notes Board
 **Thanks for choosing Sticky-Notes Board!** This is the perfect place to declutter your mind & organize your thoughts. You can store quick notes or jot down important lists with the click of a button. Sticky-Notes Board will bring peace of mind when you know all your important information is being stored in one place, instead of scattered around your desk on loose pieces of paper.
 
 ## 🗄️ Table of Contents
-- [App Usage](#app-usage)
-- [Sticky-Notes Board Link & Screenshot](#give-it-a-try)
+- [App Usage](#📱app-usage)
+- [Sticky-Notes Board Link & Screenshot](#💻give-it-a-try)
 - [App Structure](#🏗️app-structure)
 - [Technologies Used](#📋technologies-used)
 - [Contributors](#🤝contributors)
 - [Thank You](#😎👍thank-you)
 
-## App Usage
+## 📱App Usage
 Sticky-Notes Board can be used by anyone with important information & a busy brain.
 
-(insert screenshots of each step after each description)
+# (insert screenshots & update description of each step)
 
 1. **Open the app:** Launch the Sticky-Note Board application on your device.
 2. **Create a new note or list:**
@@ -24,8 +24,8 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 4. **Clear your board:** When you are done with the notes & lists on your board, click the "clear all" button on the bottom left of the page.
 5. **View the notes:** The notes will be saved to your local storage. You can exit your board and return to it at a later time.
 
-## Give it a Try
-(insert link here)
+## 💻Give it a Try
+Click the link to try Sticky-Notes Board: https://ldegraz.github.io/Project-1/
 
 ## 🏗️App Structure
 - **index.html:** This is the main entry point for the Sticky-Notes Board app & it contains the basic structure of the webpage. It links to the style.css for styling and script.js for functionality.
@@ -38,10 +38,10 @@ Sticky-Notes Board can be used by anyone with important information & a busy bra
 - **JavaScript:** Implemented for the interactive functionalities of the app, including note creation and local storage management.
 
 ## 🤝Contributors
-- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
-- **Tyreone Sarpong:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
-- **Grace Halpin:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
-- **Thomas Korlewala:** [GitHub Profile](insert github profile link here) - Developed (insert details here- if you used Bootstrap, you can mention it here- example: "Utilized Bootstrap for a responsive design.").
+- **Lauren DeGrazia:** [GitHub Profile](https://github.com/LDegraz) - Developed the local storage code in JavaScript, created the README using markdown, & ogranized the presentation so collaborators could easily add work.
+- **Tyreone Sarpong:** [GitHub Profile](https://github.com/Tyreone58) - Developed the Javascript code for a responsive & functional website, & added contributions to the README & group presentation.
+- **Grace Halpin:** [GitHub Profile](https://github.com/PentelX) - Developed the CSS code to style the website, utilized Bootstrap for a responsive design, & added contributions to the README & group presentation.
+- **Thomas Korlewala:** [GitHub Profile](https://github.com/Tobby45bay) - Developed the Javascript code for a responsive & functional website, & added contributions to the README & group presentation.
 
 ## 😎👍Thank You
 This project was created with the intention of helping individuals organize their thoughts & declutter their minds. We hope you find Sticky-Notes Board to be a useful tool in your daily life. If you have any feedback or suggestions, please feel free to reach out to us. We appreciate your support and hope you enjoy using Sticky-Notes Board! 📝
