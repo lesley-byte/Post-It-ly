@@ -45,6 +45,9 @@ function initializeButtons() {
   if (!addNoteButton) {
     console.error("Failed to initialize: #add-note-btn element not found.");
   }
+  // Add event listeners for dragging notes
+  noteBoard.addEventListener("mousedown", mouseDown); // Desktop interaction
+  noteBoard.addEventListener("touchstart", mouseDown, { passive: false }); // Mobile interaction
 
   // Clear All Modal Confirm Button
   const confirmClearButton = document.getElementById("confirm-clear-btn");
@@ -366,9 +369,10 @@ function updateEmptyStateMessage() {
 }
 
 function mouseDown(event) {
-  event.preventDefault(); // Prevent default scrolling or other touch behaviors
+  event.preventDefault(); // Prevent default scrolling or other behaviors
+
   const isTouch = event.type === "touchstart";
-  const startEvent = isTouch ? event.touches[0] : event;
+  const startEvent = isTouch ? event.changedTouches[0] : event; // Use `changedTouches`
 
   if (event.target.classList.contains("note-top-bar")) {
     currentNote = event.target.parentElement;
@@ -406,11 +410,11 @@ function mouseDown(event) {
 }
 
 function mouseMove(event) {
-  event.preventDefault(); // Prevent scrolling on mobile devices
+  event.preventDefault(); // Prevent scrolling or other touch behaviors
   if (!currentNote) return;
 
   const isTouch = event.type === "touchmove";
-  const moveEvent = isTouch ? event.touches[0] : event; // Use the correct event
+  const moveEvent = isTouch ? event.changedTouches[0] : event; // Normalize the event
 
   const board = document.getElementById("notes-board");
   const boardRect = board.getBoundingClientRect();
