@@ -376,6 +376,9 @@ function updateEmptyStateMessage() {
   }
 }
 
+let zIndexCounter = 1; // Keep track of the z-index for notes
+
+// Dragging logic for notes
 function mouseDown(event) {
   event.preventDefault(); // Prevent default scrolling or other behaviors
 
@@ -384,6 +387,9 @@ function mouseDown(event) {
 
   if (event.target.classList.contains("note-top-bar")) {
     currentNote = event.target.parentElement;
+
+    // Bring the note to the top by setting a higher z-index
+    currentNote.style.zIndex = zIndexCounter++;
 
     // Ensure the note has valid `left` and `top` styles
     if (!currentNote.style.left) {
