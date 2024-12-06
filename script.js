@@ -366,6 +366,9 @@ function updateEmptyStateMessage() {
 }
 
 function mouseDown(event) {
+  event.preventDefault();
+  const isTouch = event.type === "touchstart";
+  const startEvent = isTouch ? event.touches[0] : event;
   if (event.target.classList.contains("note-top-bar")) {
     currentNote = event.target.parentElement;
 
@@ -391,13 +394,21 @@ function mouseDown(event) {
     console.log(`MouseDown - Offset: startX=${startX}, startY=${startY}`);
 
     // Attach mousemove and mouseup listeners
-    document.addEventListener("mousemove", mouseMove);
-    document.addEventListener("mouseup", mouseUp);
+    if (isTouch) {
+      document.addEventListener("touchmove", mouseMove);
+      document.addEventListener("touchend", mouseUp);
+    } else {
+      document.addEventListener("mousemove", mouseMove);
+      document.addEventListener("mouseup", mouseUp);
+    }
   }
 }
 
 function mouseMove(event) {
   if (!currentNote) return;
+
+  const isTouch = event.type === "touchmove";
+  const moveEvent = isTouch ? event.touches[0] : event;
 
   const board = document.getElementById("notes-board");
   const boardRect = board.getBoundingClientRect();
