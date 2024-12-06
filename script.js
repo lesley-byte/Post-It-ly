@@ -138,66 +138,63 @@ function createNote() {
 }
 
 // Create and return a note element
-function createNoteElement({ id, content, color, top, left }) {
-  if (!id || !content) {
-    throw new Error("Invalid note data. Both 'id' and 'content' are required.");
-  }
-
-  // Create the note container
+// Ensure notes have valid `left` and `top` styles when created
+function createNoteElement(noteData) {
   const note = document.createElement("div");
-  note.classList.add("note");
-  note.id = id;
+  note.classList.add("note", "card");
+  note.id = noteData.id;
   note.style.position = "absolute";
-  note.style.backgroundColor = color || "#FFCC00";
-  note.style.top = top || "0px";
-  note.style.left = left || "0px";
+  note.style.left = noteData.left || "0px";
+  note.style.top = noteData.top || "0px";
+  note.style.backgroundColor = noteData.color;
+  note.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
 
-  // Create the header
-  const noteHeader = document.createElement("div");
-  noteHeader.classList.add("note-header");
+  // Create top bar for dragging
+  const topBar = document.createElement("div");
+  topBar.classList.add(
+    "note-top-bar",
+    "card-header",
+    "d-flex",
+    "justify-content-between"
+  );
+  topBar.style.cursor = "move";
+  // Set the background color of the top bar to match the note but be a little lighter
+  topBar.style.backgroundColor = noteData.color.replace("1)", "0.8)");
+  topBar.style.padding = "5px";
+  topBar.style.display = "flex";
+  topBar.style.justifyContent = "space-between";
+  topBar.style.alignItems = "center";
+  topBar.style.borderBottom = "1px solid rgba(0, 0, 0, 0.125)";
 
-  // Title or ID (top-left)
-  const noteTitle = document.createElement("span");
-  noteTitle.textContent = `Note ${id}`;
-  noteTitle.classList.add("note-title");
-
-  // Clear button (top-right)
-  const clearButton = document.createElement("span");
-  clearButton.classList.add("clear-button");
-  clearButton.innerHTML = "&times;";
-  clearButton.addEventListener("click", () => {
-    try {
-      note.remove();
-      saveNotes();
-      console.log(`Note removed: ID=${id}`);
-    } catch (error) {
-      console.error(`Error removing note ID=${id}:`, error);
-    }
+  // Create delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "X";
+  deleteButton.classList.add("btn", "btn-sm", "btn-danger");
+  deleteButton.style.backgroundColor = "red";
+  deleteButton.style.color = "white";
+  deleteButton.style.border = "none";
+  deleteButton.style.cursor = "pointer";
+  deleteButton.style.marginLeft = "auto";
+  deleteButton.addEventListener("click", () => {
+    note.remove();
+    saveNotes();
+    updateEmptyStateMessage();
   });
 
-  noteHeader.append(noteTitle, clearButton);
+  // Create content area for the note
+  const contentArea = document.createElement("div");
+  contentArea.classList.add("note-content", "card-body", "p-3");
+  contentArea.contentEditable = "true";
+  contentArea.style.padding = "10px";
+  contentArea.textContent = noteData.content;
 
-  // Content area
-  const noteContent = document.createElement("div");
-  noteContent.classList.add("note-content");
-  noteContent.contentEditable = true;
-  noteContent.textContent = content;
-  noteContent.addEventListener("focus", () => {
-    if (noteContent.textContent === "Click to Edit") {
-      noteContent.textContent = "";
-    }
-  });
+  // Append delete button and content area to the note
+  topBar.appendChild(deleteButton);
+  note.appendChild(topBar);
+  note.appendChild(contentArea);
 
-  note.append(noteHeader, noteContent);
-
-  // Drag functionality
-  note.addEventListener("mousedown", (event) => {
-    currentNote = note;
-    startX = event.clientX;
-    startY = event.clientY;
-    document.addEventListener("mousemove", mouseMove);
-    document.addEventListener("mouseup", mouseUp);
-  });
+  // Add event listeners for dragging
+  topBar.addEventListener("mousedown", mouseDown);
 
   return note;
 }
@@ -339,65 +336,4 @@ function mouseUp() {
     document.removeEventListener("mousemove", mouseMove);
     document.removeEventListener("mouseup", mouseUp);
   }
-}
-
-// Ensure notes have valid `left` and `top` styles when created
-function createNoteElement(noteData) {
-  const note = document.createElement("div");
-  note.classList.add("note", "card");
-  note.id = noteData.id;
-  note.style.position = "absolute";
-  note.style.left = noteData.left || "0px";
-  note.style.top = noteData.top || "0px";
-  note.style.backgroundColor = noteData.color;
-  note.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
-
-  // Create top bar for dragging
-  const topBar = document.createElement("div");
-  topBar.classList.add(
-    "note-top-bar",
-    "card-header",
-    "d-flex",
-    "justify-content-between"
-  );
-  topBar.style.cursor = "move";
-  // Set the background color of the top bar to match the note but be a little lighter
-  topBar.style.backgroundColor = noteData.color.replace("1)", "0.8)");
-  topBar.style.padding = "5px";
-  topBar.style.display = "flex";
-  topBar.style.justifyContent = "space-between";
-  topBar.style.alignItems = "center";
-  topBar.style.borderBottom = "1px solid rgba(0, 0, 0, 0.125)";
-
-  // Create delete button
-  const deleteButton = document.createElement("button");
-  deleteButton.textContent = "X";
-  deleteButton.classList.add("btn", "btn-sm", "btn-danger");
-  deleteButton.style.backgroundColor = "red";
-  deleteButton.style.color = "white";
-  deleteButton.style.border = "none";
-  deleteButton.style.cursor = "pointer";
-  deleteButton.style.marginLeft = "auto";
-  deleteButton.addEventListener("click", () => {
-    note.remove();
-    saveNotes();
-    updateEmptyStateMessage();
-  });
-
-  // Create content area for the note
-  const contentArea = document.createElement("div");
-  contentArea.classList.add("note-content", "card-body", "p-3");
-  contentArea.contentEditable = "true";
-  contentArea.style.padding = "10px";
-  contentArea.textContent = noteData.content;
-
-  // Append delete button and content area to the note
-  topBar.appendChild(deleteButton);
-  note.appendChild(topBar);
-  note.appendChild(contentArea);
-
-  // Add event listeners for dragging
-  topBar.addEventListener("mousedown", mouseDown);
-
-  return note;
 }
