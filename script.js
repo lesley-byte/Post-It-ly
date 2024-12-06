@@ -386,7 +386,7 @@ function createNoteElement(noteData) {
 
   // Create content area for the note
   const contentArea = document.createElement("div");
-  contentArea.classList.add("note-content", "card-body");
+  contentArea.classList.add("note-content", "card-body", "p-3");
   contentArea.contentEditable = "true";
   contentArea.style.padding = "10px";
   contentArea.textContent = noteData.content;

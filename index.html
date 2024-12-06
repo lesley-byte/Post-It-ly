@@ -20,14 +20,15 @@
     <!-- Main Content -->
     <main class="container flex-grow-1">
         <!-- Control Panel -->
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="btn-group" role="group" aria-label="Control Buttons">
-                <button id="clear-all-btn" class="btn btn-danger" data-bs-toggle="modal"
+        <div class="row mb-4">
+            <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+                <button id="clear-all-btn" class="btn btn-danger mb-2" data-bs-toggle="modal"
                     data-bs-target="#confirmClearModal">
-                    <i class="bi bi-trash3"></i> Clear All
+                    <i class="bi bi-trash3"></i> Clear
                 </button>
-                <button id="add-note-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addNoteModal">
-                    <i class="bi bi-plus-lg"></i> Add Text Note
+                <button id="add-note-btn" class="btn btn-success mb-2" data-bs-toggle="modal"
+                    data-bs-target="#addNoteModal">
+                    <i class="bi bi-plus-lg"></i> Add
                 </button>
             </div>
         </div>
@@ -43,10 +44,12 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3 mt-4">
-        <p class="mb-1">&copy; 2024 Notes Board. All Rights Reserved.</p>
-        <p class="mb-0">
-            Made with <i class="bi bi-heart-fill text-danger"></i> by [Your Name].
-        </p>
+        <div class="container">
+            <p class="mb-1">&copy; 2024 Notes Board. All Rights Reserved.</p>
+            <p class="mb-0">
+                Made with <i class="bi bi-heart-fill text-danger"></i> by [Your Name].
+            </p>
+        </div>
     </footer>
 
     <!-- Modals -->
@@ -84,7 +87,7 @@
                             <label for="note-content" class="form-label">Note Content</label>
                             <input type="text" id="note-content" class="form-control" placeholder="Enter note content">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 d-flex justify-content-between">
                             <label for="note-color" class="form-label">Note Color</label>
                             <input type="color" id="note-color" class="form-control" value="#FFCC00">
                         </div>
