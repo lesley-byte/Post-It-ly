@@ -20,6 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+window.addEventListener("resize", () => {
+  const board = document.getElementById("notes-board");
+  const boardRect = board.getBoundingClientRect();
+  const notes = document.querySelectorAll("#notes-board .note");
+
+  notes.forEach((note) => {
+    const left = parseInt(note.style.left, 10) || 0;
+    const top = parseInt(note.style.top, 10) || 0;
+
+    // Constrain the note within the new board dimensions
+    const maxLeft = boardRect.width - note.offsetWidth;
+    const maxTop = boardRect.height - note.offsetHeight;
+
+    note.style.left = `${Math.min(Math.max(0, left), maxLeft)}px`;
+    note.style.top = `${Math.min(Math.max(0, top), maxTop)}px`;
+  });
+});
+
 function initializeButtons() {
   // Add Note Button (opens the modal, logic is in HTML attributes)
   const addNoteButton = document.getElementById("add-note-btn");
@@ -140,14 +158,30 @@ function createNote() {
 // Create and return a note element
 // Ensure notes have valid `left` and `top` styles when created
 function createNoteElement(noteData) {
+  const board = document.getElementById("notes-board");
+  const boardRect = board.getBoundingClientRect();
+
+  // Create the note container
   const note = document.createElement("div");
   note.classList.add("note", "card");
   note.id = noteData.id;
   note.style.position = "absolute";
-  note.style.left = noteData.left || "0px";
-  note.style.top = noteData.top || "0px";
   note.style.backgroundColor = noteData.color;
   note.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
+  note.style.width = "200px"; // Example fixed width for notes
+
+  // Ensure the note starts within the bounds of the board
+  const initialLeft = Math.min(
+    parseInt(noteData.left, 10) || 0,
+    boardRect.width - 200
+  );
+  const initialTop = Math.min(
+    parseInt(noteData.top, 10) || 0,
+    boardRect.height - 100
+  );
+
+  note.style.left = `${Math.max(0, initialLeft)}px`; // Ensure it's not negative
+  note.style.top = `${Math.max(0, initialTop)}px`; // Ensure it's not negative
 
   // Create top bar for dragging
   const topBar = document.createElement("div");
@@ -158,23 +192,14 @@ function createNoteElement(noteData) {
     "justify-content-between"
   );
   topBar.style.cursor = "move";
-  // Set the background color of the top bar to match the note but be a little lighter
   topBar.style.backgroundColor = noteData.color.replace("1)", "0.8)");
   topBar.style.padding = "5px";
-  topBar.style.display = "flex";
-  topBar.style.justifyContent = "space-between";
-  topBar.style.alignItems = "center";
   topBar.style.borderBottom = "1px solid rgba(0, 0, 0, 0.125)";
 
   // Create delete button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "X";
   deleteButton.classList.add("btn", "btn-sm", "btn-danger");
-  deleteButton.style.backgroundColor = "red";
-  deleteButton.style.color = "white";
-  deleteButton.style.border = "none";
-  deleteButton.style.cursor = "pointer";
-  deleteButton.style.marginLeft = "auto";
   deleteButton.addEventListener("click", () => {
     note.remove();
     saveNotes();
@@ -185,15 +210,14 @@ function createNoteElement(noteData) {
   const contentArea = document.createElement("div");
   contentArea.classList.add("note-content", "card-body", "p-3");
   contentArea.contentEditable = "true";
-  contentArea.style.padding = "10px";
   contentArea.textContent = noteData.content;
 
-  // Append delete button and content area to the note
+  // Assemble the note
   topBar.appendChild(deleteButton);
   note.appendChild(topBar);
   note.appendChild(contentArea);
 
-  // Add event listeners for dragging
+  // Enable dragging
   topBar.addEventListener("mousedown", mouseDown);
 
   return note;
@@ -310,19 +334,29 @@ function mouseDown(event) {
 function mouseMove(event) {
   if (!currentNote) return;
 
-  try {
-    // Calculate the new position relative to the current offsets
-    const newLeft = event.clientX - startX;
-    const newTop = event.clientY - startY;
+  const board = document.getElementById("notes-board");
+  const boardRect = board.getBoundingClientRect();
+  const noteRect = currentNote.getBoundingClientRect();
 
-    console.log(`MouseMove - Calculated: left=${newLeft}px, top=${newTop}px`);
+  // Calculate the new position
+  let newLeft = event.clientX - startX;
+  let newTop = event.clientY - startY;
 
-    // Update the note's position
-    currentNote.style.left = `${newLeft}px`;
-    currentNote.style.top = `${newTop}px`;
-  } catch (error) {
-    console.error("Error during mouseMove event:", error);
+  // Constrain within the board's boundaries
+  if (newLeft < 0) newLeft = 0; // Left boundary
+  if (newTop < 0) newTop = 0; // Top boundary
+  if (newLeft + noteRect.width > boardRect.width) {
+    newLeft = boardRect.width - noteRect.width; // Right boundary
   }
+  if (newTop + noteRect.height > boardRect.height) {
+    newTop = boardRect.height - noteRect.height; // Bottom boundary
+  }
+
+  // Apply the constrained position
+  currentNote.style.left = `${newLeft}px`;
+  currentNote.style.top = `${newTop}px`;
+
+  console.log(`MouseMove - Calculated: left=${newLeft}px, top=${newTop}px`);
 }
 
 function mouseUp() {
@@ -331,6 +365,9 @@ function mouseUp() {
       `MouseUp - Note moved to: left=${currentNote.style.left}, top=${currentNote.style.top}`
     );
     currentNote = null;
+
+    // Save notes after dragging
+    saveNotes();
 
     // Remove event listeners
     document.removeEventListener("mousemove", mouseMove);
