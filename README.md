@@ -5,7 +5,7 @@
 ## 🗄️ Table of Contents
 
 - [Screenshot](#screenshot)
-- [Sticky-Notes Board Link & Screenshot](#💻give-it-a-try)
+- [Give It A Try](#💻give-it-a-try)
 - [App Structure](#🏗️app-structure)
 - [Technologies Used](#📋technologies-used)
 - [Contributors](#🤝contributors)
@@ -13,7 +13,7 @@
 
 ## Screenshot
 
-![Sticky-Notes Board](./assets/images/Screenshot_6-12-2024_151741_.jpeg)
+![Sticky-Notes Board](./assets/images/Screenshot_6-12-2024_17715_lesley-byte.github.io.jpeg)
 
 ## 💻Give it a Try
 
