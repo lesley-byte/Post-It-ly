@@ -9,6 +9,7 @@ let startX = 0,
   startY = 0,
   newX = 0,
   newY = 0;
+let currentlyEditingNote = null; // Reference to the note being edited
 
 // Ensure only one event listener is attached to the "Add Note" button
 document.addEventListener("DOMContentLoaded", () => {
@@ -180,8 +181,8 @@ function createNoteElement(noteData) {
     boardRect.height - 100
   );
 
-  note.style.left = `${Math.max(0, initialLeft)}px`; // Ensure it's not negative
-  note.style.top = `${Math.max(0, initialTop)}px`; // Ensure it's not negative
+  note.style.left = `${Math.max(0, initialLeft)}px`;
+  note.style.top = `${Math.max(0, initialTop)}px`;
 
   // Create top bar for dragging
   const topBar = document.createElement("div");
@@ -196,7 +197,13 @@ function createNoteElement(noteData) {
   topBar.style.padding = "5px";
   topBar.style.borderBottom = "1px solid rgba(0, 0, 0, 0.125)";
 
-  // Create delete button
+  // Create Edit Button
+  const editButton = document.createElement("button");
+  editButton.textContent = "Edit";
+  editButton.classList.add("btn", "btn-sm", "btn-primary", "me-2");
+  editButton.addEventListener("click", () => openEditModal(note));
+
+  // Create Delete Button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "X";
   deleteButton.classList.add("btn", "btn-sm", "btn-danger");
@@ -206,13 +213,71 @@ function createNoteElement(noteData) {
     updateEmptyStateMessage();
   });
 
-  // Create content area for the note
+  // Function to open the edit modal
+  function openEditModal(note) {
+    currentlyEditingNote = note; // Track the note being edited
+
+    // Get the content and color of the note
+    document.getElementById("edit-note-content").value =
+      note.querySelector(".note-content").textContent;
+
+    // Convert RGB to Hex for the color input
+    const rgbColor = note.style.backgroundColor;
+    const hexColor = rgbToHex(rgbColor);
+    document.getElementById("edit-note-color").value = hexColor;
+
+    // Show the modal
+    const editModal = new bootstrap.Modal(
+      document.getElementById("editNoteModal")
+    );
+    editModal.show();
+  }
+
+  // Helper function to convert RGB to Hex
+  function rgbToHex(rgb) {
+    const match = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    if (!match) return "#000000"; // Fallback to black if the input is invalid
+    const r = parseInt(match[1]).toString(16).padStart(2, "0");
+    const g = parseInt(match[2]).toString(16).padStart(2, "0");
+    const b = parseInt(match[3]).toString(16).padStart(2, "0");
+    return `#${r}${g}${b}`;
+  }
+
+  // Logic for updating the note
+  document.getElementById("update-note-btn").addEventListener("click", () => {
+    if (currentlyEditingNote) {
+      const updatedContent = document.getElementById("edit-note-content").value;
+      const updatedColor = document.getElementById("edit-note-color").value;
+
+      // Apply updates to the note and the top bar
+      currentlyEditingNote.querySelector(".note-content").textContent =
+        updatedContent;
+      currentlyEditingNote.style.backgroundColor = updatedColor;
+      currentlyEditingNote.querySelector(
+        ".note-top-bar"
+      ).style.backgroundColor = updatedColor.replace("1)", "0.8)");
+
+      // Save changes to localStorage
+      saveNotes();
+
+      // Close the modal
+      const editModal = bootstrap.Modal.getInstance(
+        document.getElementById("editNoteModal")
+      );
+      editModal.hide();
+
+      console.log("Note updated successfully.");
+    }
+  });
+
+  // Create Content Area
   const contentArea = document.createElement("div");
   contentArea.classList.add("note-content", "card-body", "p-3");
   contentArea.contentEditable = "true";
   contentArea.textContent = noteData.content;
 
   // Assemble the note
+  topBar.appendChild(editButton);
   topBar.appendChild(deleteButton);
   note.appendChild(topBar);
   note.appendChild(contentArea);
