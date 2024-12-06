@@ -205,12 +205,19 @@ function createNoteElement(noteData) {
   editButton.textContent = "Edit";
   editButton.classList.add("btn", "btn-sm", "btn-primary", "me-2");
   editButton.addEventListener("click", () => openEditModal(note));
+  editButton.addEventListener("touchstart", () => openEditModal(note));
 
   // Create Delete Button
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "X";
   deleteButton.classList.add("btn", "btn-sm", "btn-danger");
   deleteButton.addEventListener("click", () => {
+    note.remove();
+    saveNotes();
+    updateEmptyStateMessage();
+  });
+
+  deleteButton.addEventListener("touchstart", () => {
     note.remove();
     saveNotes();
     updateEmptyStateMessage();
@@ -287,6 +294,7 @@ function createNoteElement(noteData) {
 
   // Enable dragging
   topBar.addEventListener("mousedown", mouseDown);
+  topBar.addEventListener("touchstart", mouseDown, { passive: false });
 
   return note;
 }
