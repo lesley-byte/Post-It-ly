@@ -366,9 +366,10 @@ function updateEmptyStateMessage() {
 }
 
 function mouseDown(event) {
-  event.preventDefault();
+  event.preventDefault(); // Prevent default behavior like scrolling on touch devices
   const isTouch = event.type === "touchstart";
   const startEvent = isTouch ? event.touches[0] : event;
+
   if (event.target.classList.contains("note-top-bar")) {
     currentNote = event.target.parentElement;
 
@@ -385,15 +386,15 @@ function mouseDown(event) {
     const currentTop = parseInt(currentNote.style.top, 10);
 
     // Calculate offsets based on the current position
-    startX = event.clientX - currentLeft;
-    startY = event.clientY - currentTop;
+    startX = startEvent.clientX - currentLeft;
+    startY = startEvent.clientY - currentTop;
 
     console.log(
       `MouseDown - Note Position: left=${currentLeft}px, top=${currentTop}px`
     );
     console.log(`MouseDown - Offset: startX=${startX}, startY=${startY}`);
 
-    // Attach mousemove and mouseup listeners
+    // Attach move and up listeners
     if (isTouch) {
       document.addEventListener("touchmove", mouseMove);
       document.addEventListener("touchend", mouseUp);
@@ -415,8 +416,8 @@ function mouseMove(event) {
   const noteRect = currentNote.getBoundingClientRect();
 
   // Calculate the new position
-  let newLeft = event.clientX - startX;
-  let newTop = event.clientY - startY;
+  let newLeft = moveEvent.clientX - startX;
+  let newTop = moveEvent.clientY - startY;
 
   // Constrain within the board's boundaries
   if (newLeft < 0) newLeft = 0; // Left boundary
@@ -435,7 +436,7 @@ function mouseMove(event) {
   console.log(`MouseMove - Calculated: left=${newLeft}px, top=${newTop}px`);
 }
 
-function mouseUp() {
+function mouseUp(event) {
   if (currentNote) {
     console.log(
       `MouseUp - Note moved to: left=${currentNote.style.left}, top=${currentNote.style.top}`
@@ -445,8 +446,13 @@ function mouseUp() {
     // Save notes after dragging
     saveNotes();
 
-    // Remove event listeners
-    document.removeEventListener("mousemove", mouseMove);
-    document.removeEventListener("mouseup", mouseUp);
+    // Remove move and up listeners
+    if (event.type === "touchend") {
+      document.removeEventListener("touchmove", mouseMove);
+      document.removeEventListener("touchend", mouseUp);
+    } else {
+      document.removeEventListener("mousemove", mouseMove);
+      document.removeEventListener("mouseup", mouseUp);
+    }
   }
 }
