@@ -442,7 +442,6 @@ function mouseUp(event) {
     console.log(
       `MouseUp - Note moved to: left=${currentNote.style.left}, top=${currentNote.style.top}`
     );
-    currentNote = null;
 
     // Save notes after dragging
     saveNotes();
@@ -455,5 +454,7 @@ function mouseUp(event) {
       document.removeEventListener("mousemove", mouseMove);
       document.removeEventListener("mouseup", mouseUp);
     }
+
+    currentNote = null; // Deselect note
   }
 }
