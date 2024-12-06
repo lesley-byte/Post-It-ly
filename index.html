@@ -10,36 +10,44 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
     <!-- Header -->
     <header class="bg-primary text-white text-center py-3 mb-4">
         <h1 class="display-5">Notes Board</h1>
+        <p class="lead">Organize your thoughts and ideas with ease.</p>
     </header>
 
     <!-- Main Content -->
-    <main class="container">
+    <main class="container flex-grow-1">
         <!-- Control Panel -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="btn-group" role="group" aria-label="Control Buttons">
                 <button id="clear-all-btn" class="btn btn-danger" data-bs-toggle="modal"
                     data-bs-target="#confirmClearModal">
-                    Clear All
+                    <i class="bi bi-trash3"></i> Clear All
                 </button>
                 <button id="add-note-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addNoteModal">
-                    Add Text Note
+                    <i class="bi bi-plus-lg"></i> Add Text Note
                 </button>
             </div>
         </div>
 
         <!-- Notes Board -->
-        <div id="notes-board" class="position-relative bg-light border rounded"
+        <div id="notes-board" class="position-relative bg-light border rounded shadow-sm"
             style="height: 80vh; overflow-y: auto; padding: 16px;">
-            <p id="empty-state-message" class="text-muted text-center my-5">No notes yet. Add your first note!</p>
+            <p id="empty-state-message" class="text-muted text-center my-5">
+                <i class="bi bi-sticky"></i> No notes yet. Add your first note!
+            </p>
         </div>
-
-
-
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-4">
+        <p class="mb-1">&copy; 2024 Notes Board. All Rights Reserved.</p>
+        <p class="mb-0">
+            Made with <i class="bi bi-heart-fill text-danger"></i> by [Your Name].
+        </p>
+    </footer>
 
     <!-- Modals -->
     <!-- Confirm Clear All Modal -->
@@ -94,6 +102,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Custom Script -->
     <script src="script.js"></script>
 </body>

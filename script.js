@@ -350,6 +350,7 @@ function createNoteElement(noteData) {
   note.style.left = noteData.left || "0px";
   note.style.top = noteData.top || "0px";
   note.style.backgroundColor = noteData.color;
+  note.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)";
 
   // Create top bar for dragging
   const topBar = document.createElement("div");
@@ -366,6 +367,7 @@ function createNoteElement(noteData) {
   topBar.style.display = "flex";
   topBar.style.justifyContent = "space-between";
   topBar.style.alignItems = "center";
+  topBar.style.borderBottom = "1px solid rgba(0, 0, 0, 0.125)";
 
   // Create delete button
   const deleteButton = document.createElement("button");
@@ -384,7 +386,7 @@ function createNoteElement(noteData) {
 
   // Create content area for the note
   const contentArea = document.createElement("div");
-  contentArea.classList.add("note-content");
+  contentArea.classList.add("note-content", "card-body");
   contentArea.contentEditable = "true";
   contentArea.style.padding = "10px";
   contentArea.textContent = noteData.content;
